@@ -1,5 +1,5 @@
 {
-  "name": "TRLogicLLC-test",
+  "name": "tr-logic-llc/api",
   "type": "project",
   "license": "BSD-3-Clause",
   "config": {
@@ -8,11 +8,27 @@
   },
   "require": {
     "php": "^7.4",
+    "ext-json": "^7.4",
+    "laminas/laminas-config-aggregator": "^1.2",
     "php-di/php-di": "^6.1",
     "slim/psr7": "^1.1",
-    "slim/slim": "^4.5"
+    "slim/slim": "^4.5",
+    "symfony/console": "^5.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Test\\": "tests/"
+    }
+  },
+  "scripts": {
+    "app": "php bin/app.php --ansi"
   }
 }

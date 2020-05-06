@@ -37,10 +37,10 @@ api-wait-db:
 	until docker-compose exec -T sm-postgres pg_isready --timeout=0 --dbname=app ; do sleep 1 ; done
 
 api-migrations:
-	docker-compose run --rm api-php-cli php bin/console doctrine:migrations:migrate --no-interaction
+	docker-compose run --rm api-php-cli composer app doctrine:migrations:migrate --no-interaction
 
 api-fixtures:
-	docker-compose run --rm api-php-cli php bin/console doctrine:fixtures:load --no-interaction
+	docker-compose run --rm api-php-cli composer app doctrine:fixtures:load --no-interaction
 
 api-validate-schema:
-	docker-compose run --rm api-php-cli php bin/console doctrine:schema:validate
+	docker-compose run --rm api-php-cli composer app doctrine:schema:validate
