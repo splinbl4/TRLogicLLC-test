@@ -44,3 +44,6 @@ api-fixtures:
 
 api-validate-schema:
 	docker-compose run --rm api-php-cli composer app doctrine:schema:validate
+
+api-test:
+	docker-compose run --rm api-php-cli composer test
