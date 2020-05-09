@@ -5,26 +5,53 @@ declare(strict_types=1);
 namespace App\Module\User\Entity\User;
 
 use DateTimeImmutable;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class User
  * @package App\Module\User
+ *
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="user_users")
  */
 class User
 {
+    /**
+     * @ORM\Column(type="user_user_id")
+     * @ORM\Id
+     */
     private Id $id;
 
+    /**
+     * @ORM\Column(type="user_user_email", unique=true)
+     */
     private Email $email;
 
+    /**
+     * @ORM\Embedded(class="Name")
+     */
     private Name $name;
 
+    /**
+     * @ORM\Column(type="user_user_status", length=16)
+     */
     private Status $status;
 
+    /**
+     * @ORM\Column(type="datetime_immutable")
+     */
     private DateTimeImmutable $date;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
     private string $passwordHash;
 
-    private Token $token;
+    /**
+     * @ORM\Column(type="user_user_token")
+     */
+    private ?Token $token = null;
 
     /**
      * User constructor.
@@ -100,9 +127,9 @@ class User
     }
 
     /**
-     * @return Token
+     * @return Token|null
      */
-    public function getToken(): Token
+    public function getToken(): ?Token
     {
         return $this->token;
     }

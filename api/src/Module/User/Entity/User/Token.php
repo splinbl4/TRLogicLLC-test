@@ -12,7 +12,7 @@ use Webmozart\Assert\Assert;
  */
 class Token
 {
-    private ?string $value;
+    private string $value;
 
     /**
      * Token constructor.
@@ -25,9 +25,9 @@ class Token
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getValue(): ?string
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -39,13 +39,5 @@ class Token
     private function isEqualTo(string $value): bool
     {
         return $this->value === $value;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isEmpty(): bool
-    {
-        return empty($this->value);
     }
 }

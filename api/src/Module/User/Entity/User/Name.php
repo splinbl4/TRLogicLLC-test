@@ -4,16 +4,25 @@ declare(strict_types=1);
 
 namespace App\Module\User\Entity\User;
 
+use Doctrine\ORM\Mapping as ORM;
 use Webmozart\Assert\Assert;
 
 /**
  * Class Name
  * @package App\Module\User
+ *
+ * @ORM\Embeddable
  */
 class Name
 {
+    /**
+     * @ORM\Column(type="string")
+     */
     private string $first;
 
+    /**
+     * @ORM\Column(type="string")
+     */
     private string $last;
 
     /**

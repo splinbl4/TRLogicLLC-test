@@ -34,16 +34,13 @@ api-composer-install:
 	docker-compose run --rm api-php-cli composer install
 
 api-wait-db:
-	until docker-compose exec -T sm-postgres pg_isready --timeout=0 --dbname=app ; do sleep 1 ; done
+	until docker-compose exec -T api-postgres pg_isready --timeout=0 --dbname=app ; do sleep 1 ; done
 
 api-migrations:
-	docker-compose run --rm api-php-cli composer app doctrine:migrations:migrate --no-interaction
-
-api-fixtures:
-	docker-compose run --rm api-php-cli composer app doctrine:fixtures:load --no-interaction
+	docker-compose run --rm api-php-cli composer app migrations:migrate
 
 api-validate-schema:
-	docker-compose run --rm api-php-cli composer app doctrine:schema:validate
+	docker-compose run --rm api-php-cli composer app orm:validate-schema
 
 api-test:
 	docker-compose run --rm api-php-cli composer test
